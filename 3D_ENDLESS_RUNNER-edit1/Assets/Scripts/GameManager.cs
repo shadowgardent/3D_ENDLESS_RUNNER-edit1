@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         GameOverUi.SetActive(true); // แสดง UI จบเกม
-        Time.timeScale = 0f; // หยุดเกม
+        Time.timeScale = 1f; // หยุดเกม
     }
      //  ฟังก์ชันแสดง UI จบเกม และหยุดเกม หากชนะ
     public void gameWin()
