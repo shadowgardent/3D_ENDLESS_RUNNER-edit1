@@ -44,7 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
         // ถ้าผู้เล่นตกจากพื้นไปต่ำกว่าระดับ -5 ให้ตาย
         if (transform.position.y < -5)
-        {
+        {   
+            
             Die();
             alive = false;
         }
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // กำหนดค่า alive เป็น false เพื่อหยุดการเคลื่อนที่
         alive = false;
-
+        
         gameManager.gameOver();
 
         

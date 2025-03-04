@@ -24,6 +24,8 @@ public class Coin : MonoBehaviour
         // เพิ่มคะแนนให้ผู้เล่นผ่าน GameManager
         GameManager.inst.IncrementScore();
 
+        AudioManager.instance.PlayCoinSound();
+
         // ทำลายเหรียญหลังจากถูกเก็บโดยผู้เล่น
         Destroy(gameObject);
     }

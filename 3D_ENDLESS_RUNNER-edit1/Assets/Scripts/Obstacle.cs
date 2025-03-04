@@ -4,6 +4,7 @@ public class Obstacle : MonoBehaviour
 {
     // ประกาศตัวแปรอ้างอิงไปยังสคริปต์ PlayerMovement
     PlayerMovement playerMovement;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -16,7 +17,8 @@ public class Obstacle : MonoBehaviour
     {
         // เช็คว่าถ้าสิ่งที่ชนเป็น GameObject ที่ชื่อ "Player"
         if (collision.gameObject.name == "Player")
-        {
+        {   
+            AudioManager.instance.PlayDieSound();
             // เรียกใช้ฟังก์ชัน Die() ในสคริปต์ PlayerMovement เพื่อฆ่าผู้เล่น
             playerMovement.Die();
         }
