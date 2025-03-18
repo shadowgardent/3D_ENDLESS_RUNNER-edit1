@@ -14,19 +14,9 @@ public class AudioManager : MonoBehaviour
     private AudioSource audioSource;
 
     private void Awake()
-    {
-        // ตรวจสอบว่ามี AudioManager อยู่แล้วหรือไม่
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // ป้องกันการทำลายเมื่อเปลี่ยนฉาก
-        }
-        else
-        {
-            Destroy(gameObject); // ถ้ามีอยู่แล้ว ให้ทำลายตัวใหม่
-            return;
-        }
-
+    {      
+        instance = this;
+        
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += OnSceneLoaded; // เมื่อโหลดฉากใหม่ให้เรียกฟังก์ชันนี้
     }
@@ -36,33 +26,31 @@ public class AudioManager : MonoBehaviour
         PlayMusic(); // เริ่มเล่นเพลงเมื่อเริ่มเกม
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) // เมื่อฉากใหม่ถูกโหลด ฟังก์ชันนี้จะถูกเรียกอัตโนมัติ
+
     {
         // เมื่อโหลดฉากใหม่ ตรวจสอบว่า AudioSource ยังอยู่ และเล่นเพลงอีกครั้ง
-        if (audioSource != null)
+        if (audioSource != null) //ถ้า audioSource ไม่เป็น null หมายความว่า มันยังอยู่ และสามารถเรียก PlayMusic(); เพื่อเล่นเพลงได้
         {
             PlayMusic();
         }
     }
 
     public void PlayMusic()
-    {
-            if (audioSource == null) return;
-            audioSource.clip = allGameMusic;
+    {          
+        audioSource.clip = allGameMusic;
         audioSource.loop = true;
         audioSource.Play();
     }
 
     public void PlayDieSound()
-    {
-        if (audioSource == null) return;
+    {    
         audioSource.Stop(); // หยุดเพลงหลักก่อน
         audioSource.PlayOneShot(dieSound); // เล่นเสียงเมื่อตาย
     }
 
     public void PlayCoinSound()
     {
-        if (audioSource == null) return;
         audioSource.PlayOneShot(coinSound); // เล่นเสียงเก็บเหรียญ
     }
 }
